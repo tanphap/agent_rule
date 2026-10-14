@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "verdict",
+    "issues"
+  ],
+  "properties": {
+    "verdict": {
+      "enum": [
+        "APPROVE",
+        "CHANGES_REQUIRED",
+        "BLOCKED"
+      ]
+    },
+    "issues": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "issue_id",
+          "severity",
+          "description",
+          "evidence"
+        ],
+        "properties": {
+          "issue_id": {
+            "type": "string"
+          },
+          "severity": {
+            "enum": [
+              "CRITICAL",
+              "HIGH",
+              "MEDIUM",
+              "LOW"
+            ]
+          },
+          "description": {
+            "type": "string"
+          },
+          "evidence": {}
+        }
+      }
+    }
+  }
+}
