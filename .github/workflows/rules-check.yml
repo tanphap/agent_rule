@@ -1,0 +1,19 @@
+name: Validate agent rules
+on:
+  push:
+  pull_request:
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check required files and JSON contracts
+        shell: bash
+        run: |
+          set -euo pipefail
+          for f in README.md AGENTS.md prompts/00-shared-rules.md prompts/01-planner.md prompts/02-muse.md prompts/03-coder.md prompts/04-critic.md prompts/05-testing.md prompts/06-archivist.md docs/contracts.md docs/pipeline-gates.md docs/security.md docs/integration.md docs/runbook.md schemas/critic.schema.json schemas/testing.schema.json; do
+            test -s "$f"
+          done
+          python -m json.tool schemas/critic.schema.json >/dev/null
+          python -m json.tool schemas/testing.schema.json >/dev/null
+          echo "Rule files and JSON schemas: OK"

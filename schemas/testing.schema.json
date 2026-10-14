@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "task_id",
+    "phase",
+    "model",
+    "tested_revision",
+    "status",
+    "acceptance_results",
+    "executions",
+    "defects",
+    "evidence_refs",
+    "next_action"
+  ],
+  "properties": {
+    "task_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "phase": {
+      "const": "TESTING"
+    },
+    "model": {
+      "const": "cx/gpt-5.6-sol"
+    },
+    "tested_revision": {
+      "type": "string",
+      "minLength": 7
+    },
+    "status": {
+      "enum": [
+        "PASS",
+        "FAIL",
+        "BLOCKED"
+      ]
+    },
+    "acceptance_results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "criterion_id",
+          "result",
+          "execution_evidence"
+        ],
+        "properties": {
+          "criterion_id": {
+            "type": "string"
+          },
+          "result": {
+            "enum": [
+              "PASS",
+              "FAIL",
+              "NOT_VERIFIED"
+            ]
+          },
+          "execution_evidence": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "executions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "test_id",
+          "command",
+          "exit_code",
+          "status",
+          "stdout_log_ref"
+        ],
+        "properties": {
+          "test_id": {
+            "type": "string"
+          },
+          "command": {
+            "type": "string"
+          },
+          "exit_code": {
+            "type": "integer"
+          },
+          "status": {
+            "enum": [
+              "PASS",
+              "FAIL",
+              "BLOCKED"
+            ]
+          },
+          "stdout_log_ref": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "defects": {
+      "type": "array"
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "next_action": {
+      "enum": [
+        "ARCHIVE",
+        "RETURN_TO_CODER",
+        "RESOLVE_BLOCKER"
+      ]
+    }
+  }
+}
