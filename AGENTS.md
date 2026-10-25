@@ -19,3 +19,9 @@ COMPLETE chỉ sau PASS có bằng chứng đúng revision và Archive đã xác
 Prompt KHÔNG tự tạo tự động hóa; host Orchestrator phải ép state transitions, tool ACL và JSON schemas.
 
 All agents must obey the matching file in prompts/.
+
+## Muse Code / Superpowers project integration
+
+When developing this repository with Meta Muse Code, read `.agents/skills/agent-rule-workflow/SKILL.md`, `docs/muse-code/START_PROMPT.md`, and `docs/plans/2026-10-25-muse-superpowers.md`. Superpowers is a **methodology**, not a substitute for the Muse orchestration runtime, tool ACL or test evidence. Do not claim the runtime is deployed just because Muse Code can read skills.
+
+Before approval of the plugin's runtime hooks, review its source and capabilities. Workspace/project skills are trusted only after review. Keep all changes on an isolated branch; no unapproved merge or production deployment.

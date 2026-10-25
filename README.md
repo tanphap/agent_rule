@@ -2,6 +2,17 @@
 
 An evidence-gated workflow for Planner → Muse → Coder → Critic → Coder Rebuttal → Muse Judge → Testing → Archive.
 
+## Develop with Meta Muse Code + Superpowers
+
+This repository can now be opened in Muse Code as a **project skill** workspace. The Superpowers plugin is installed and approved separately on the Muse host; GitHub commits do not install it.
+
+- [Muse Code setup and verification](docs/muse-code/SETUP.md)
+- [Copy-ready Muse development prompt](docs/muse-code/START_PROMPT.md)
+- [Phased runtime implementation plan](docs/plans/2026-10-25-muse-superpowers.md)
+- [Project skill](.agents/skills/agent-rule-workflow/SKILL.md)
+
+Run the repository's **static contract checks** with `python -m unittest discover -s tests -p "test_repository_contracts.py" -v`. These checks verify source contracts only: they do **not** execute the 8-step runtime or certify any multi-agent deployment.
+
 ## Important
 This repository contains **agent system prompts and workflow contracts**. Merely installing prompts does **not** automatically connect GPT/Codex, Gemini, Muse or Antigravity. The external runner must call agents, validate JSON, preserve commit SHA, enforce tool permissions and store logs.
 
